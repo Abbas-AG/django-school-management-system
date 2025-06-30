@@ -1,0 +1,235 @@
+{% extends 'school/adminbase.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <style media="screen">
+    .attendance-card {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      margin: 30px auto;
+      max-width: 800px;
+      margin-top: 120px;
+      animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .card-header {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .table-hover {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .table-hover thead {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      color: white;
+    }
+
+    .table-hover th {
+      border: none!important;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .table-hover td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .table-hover tr:hover td {
+      background: #ffe5e5;
+      transform: translateX(5px);
+    }
+
+    .action-btn {
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      color: white;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+    }
+
+    .btn-danger {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+    }
+
+    .btn-gold {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+    }
+
+    .action-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .attendance-card {
+        margin: 20px 15px;
+        margin-top: 90px;
+        padding: 15px;
+      }
+      
+      .table-hover {
+        font-size: 14px;
+      }
+      
+      .action-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="attendance-card">
+    <div class="card-header">
+      <i class="fas fa-clipboard-list"></i>
+      Attendance Management <!-- translated from إدارة الحضور -->
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Class Name</th> <!-- translated from اسم الفصل -->
+          <th>Take Attendance</th> <!-- translated from تسجيل الحضور -->
+          <th>View Attendance</th> <!-- translated from عرض الحضور -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>First Middle School</td> <!-- translated from الصف الأول متوسط -->
+          <td>
+            <a class="action-btn btn-primary" href="{% url 'admin-take-attendance' 'one' %}">
+              <i class="fas fa-plus"></i>
+              Register
+            </a>
+          </td>
+          <td>
+            <a class="action-btn btn-danger" href="{% url 'admin-view-attendance' 'one' %}">
+              <i class="fas fa-eye"></i>
+              View
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Second Middle School</td> <!-- translated from الصف الثاني متوسط -->
+          <td>
+            <a class="action-btn btn-primary" href="{% url 'admin-take-attendance' 'two' %}">
+              <i class="fas fa-plus"></i>
+              Register
+            </a>
+          </td>
+          <td>
+            <a class="action-btn btn-danger" href="{% url 'admin-view-attendance' 'two' %}">
+              <i class="fas fa-eye"></i>
+              View
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Third Middle School</td> <!-- translated from الصف الثالث متوسط -->
+          <td>
+            <a class="action-btn btn-primary" href="{% url 'admin-take-attendance' 'three' %}">
+              <i class="fas fa-plus"></i>
+              Register
+            </a>
+          </td>
+          <td>
+            <a class="action-btn btn-danger" href="{% url 'admin-view-attendance' 'three' %}">
+              <i class="fas fa-eye"></i>
+              View
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>First Preparatory</td> <!-- translated from الصف الرابع اعدادي -->
+          <td>
+            <a class="action-btn btn-primary" href="{% url 'admin-take-attendance' 'four' %}">
+              <i class="fas fa-plus"></i>
+              Register
+            </a>
+          </td>
+          <td>
+            <a class="action-btn btn-danger" href="{% url 'admin-view-attendance' 'four' %}">
+              <i class="fas fa-eye"></i>
+              View
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Second Preparatory</td> <!-- translated from الصف الخامس اعدادي -->
+          <td>
+            <a class="action-btn btn-primary" href="{% url 'admin-take-attendance' 'five' %}">
+              <i class="fas fa-plus"></i>
+              Register
+            </a>
+          </td>
+          <td>
+            <a class="action-btn btn-danger" href="{% url 'admin-view-attendance' 'five' %}">
+              <i class="fas fa-eye"></i>
+              View
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Third Preparatory</td> <!-- translated from الصف السادس اعدادي -->
+          <td>
+            <a class="action-btn btn-gold" href="{% url 'admin-take-attendance' 'six' %}">
+              <i class="fas fa-plus"></i>
+              Register
+            </a>
+          </td>
+          <td>
+            <a class="action-btn btn-gold" href="{% url 'admin-view-attendance' 'six' %}">
+              <i class="fas fa-eye"></i>
+              View
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+{% endblock content %}

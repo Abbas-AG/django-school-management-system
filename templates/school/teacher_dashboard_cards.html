@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style type="text/css">
+    a:link {
+      text-decoration: none;
+    }
+
+    /* تحسين التدرج المتحرك باللون الأحمر */
+    @keyframes gradientAnimation {
+      0% {
+        background: linear-gradient(45deg, #ff0000, #8b0000);
+      }
+      50% {
+        background: linear-gradient(45deg, #8b0000, #ff0000);
+      }
+      100% {
+        background: linear-gradient(45deg, #ff0000, #8b0000);
+      }
+    }
+
+    .order-card {
+      color: #fff;
+      background: linear-gradient(45deg, #ff0000, #8b0000);
+    }
+
+    .order-card:hover {
+      transform: scale(1.05);
+    }
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: none;
+      margin-bottom: 30px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card .card-block {
+      padding: 25px;
+    }
+
+    .order-card i {
+      font-size: 26px;
+      margin-left: 10px;
+    }
+
+    .f-left {
+      float: right;
+    }
+
+    .f-right {
+      float: left;
+    }
+
+    .text-size {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Name</h6>
+            <h2 class="text-right"><i class="fas fa-user-tie f-left"></i></h2>
+            <p><span class="text-size">{{request.user.first_name}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Mobile</h6>
+            <h2 class="text-right"><i class="fas fa-mobile-alt f-left"></i></h2>
+            <p><span class="text-size">{{mobile}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Joining Date</h6>
+            <h2 class="text-right"><i class="fas fa-calendar-alt f-left"></i></h2>
+            <p><span class="text-size">{{date}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Salary</h6>
+            <h2 class="text-right"><i class="fas fa-dollar f-left"></i></h2>
+            <p><span class="text-size">{{salary}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</body>
+
+</html>

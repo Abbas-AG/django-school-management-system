@@ -1,0 +1,185 @@
+{% extends 'school/adminbase.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta charset="utf-8">
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      color: #ffffff;
+      margin-top: 50px;
+      font-size: 20px;
+      text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+      font-weight: 600;
+    }
+
+    .order-card {
+      color: #fff;
+      margin-top: 250px;
+      position: relative;
+    }
+
+    .bg-c-blue {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+    }
+
+    .bg-c-green {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+    }
+
+    .bg-c-yellow {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+    }
+
+    .bg-c-pink {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+    }
+
+    .card {
+      border-radius: 5px;
+      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+      border: none;
+      height: 60%;
+      cursor: pointer; /* Changes mouse to a hand on hover */
+      transition: all 0.3s ease-in-out;
+      overflow: hidden;
+    }
+    .card-link {
+      text-decoration: none; /* Removes underline from the link */
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card .card-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 90%;
+    }
+
+    .order-card i {
+      font-size: 26px;
+    }
+
+    .f-left {
+      float: left;
+    }
+
+    .f-right {
+      float: right;
+    }
+
+    .particles-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4 col-xl-3">
+        <a href="/admin-view-student" class="card-link">
+          <div class="card bg-c-blue order-card">
+            <div class="particles-container" id="particles-1"></div>
+            <div class="card-block">
+              <h6 class="m-b-20">View All Students</h6>
+              <br>
+              <h2 class="text-right"><i class="fas fa-eye f-left"></i></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <a href="/admin-add-student" class="card-link">
+          <div class="card bg-c-green order-card">
+            <div class="particles-container" id="particles-2"></div>
+            <div class="card-block">
+              <h6 class="m-b-20">Add a Student</h6>
+              <br>
+              <h2 class="text-right"><i class="fas fa-plus-circle f-left"></i></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <a href="/admin-approve-student" class="card-link">
+          <div class="card bg-c-yellow order-card">
+            <div class="particles-container" id="particles-3"></div>
+            <div class="card-block">
+              <h6 class="m-b-20">Approve Students</h6>
+              <br>
+              <h2 class="text-right"><i class="fas fa-check-circle f-left"></i></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <a href="/admin-view-student-fee" class="card-link">
+          <div class="card bg-c-pink order-card">
+            <div class="particles-container" id="particles-4"></div>
+            <div class="card-block">
+              <h6 class="m-b-20">View Student Fees</h6>
+              <br>
+              <h2 class="text-right"><i class="fas fa-dollar-sign f-left"></i></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <script>
+    function initParticles(id) {
+      particlesJS(id, {
+        particles: {
+          number: { value: 130 },
+          size: { value: 4 },
+          move: { speed: 4 },
+          line_linked: { enable: false },
+          color: { value: "#ffffff" },
+        }
+      });
+    }
+
+    initParticles("particles-1");
+    initParticles("particles-2");
+    initParticles("particles-3");
+    initParticles("particles-4");
+  </script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</body>
+
+{% endblock content %}

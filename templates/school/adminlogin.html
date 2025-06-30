@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% load static %}
+
+{% load widget_tweaks %}
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin Login</title>
+  <style>
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: linear-gradient(45deg, #0072ff, #8811c5);
+      background-size: 200% 200%;
+      animation: gradientMove 4s infinite alternate;
+      color: white;
+      font-weight: bold;
+      line-height: 80px;
+      margin: 10% 0 0%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+      text-align: right;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 100%;
+      cursor: pointer;
+      background: #0062cc;
+      color: white;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    .btnSubmit:hover {
+      background: #004a99;
+    }
+
+    .text-center {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    .text-center a {
+      color: #0062cc;
+      font-weight: bold;
+    }
+
+    .text-center a:hover {
+      color: #004a99;
+    }
+  </style>
+</head>
+<body>
+  {% include "school/navbar.html" %}
+  <br><br><br><br>
+
+  <!--- Admin Login Page -->
+  <form method="post">
+    {% csrf_token %}
+    <div class="container register-form">
+      <div class="form">
+        <div class="note">
+          <p>Admin Login</p>
+        </div>
+
+        <div class="form-content">
+          <div class="form-group">
+            {% render_field form.username class="form-control" placeholder="Username" %}
+          </div>
+          <div class="form-group">
+            {% render_field form.password class="form-control" placeholder="Password" %}
+          </div>
+          <button type="submit" class="btnSubmit">Login</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  {% include "school/footer.html" %}
+</body>
+</html>

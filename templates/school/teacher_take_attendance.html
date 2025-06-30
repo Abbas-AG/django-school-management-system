@@ -1,0 +1,145 @@
+      {% extends 'school/teacherbase.html' %}
+      {% load widget_tweaks %}
+      {% block content %}
+{% load static %}
+
+      <head>
+        <meta property="og:title" content="Al-Tamayuz School">
+        <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+        <meta property="og:image" content="{% static 'images/icon.png' %}">
+        <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+        <meta property="og:color" content="#0056b3">
+
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+        <style media="screen">
+          body {
+            font-family: 'Tajawal', sans-serif;
+          }
+
+          .attendance-card {
+            background: linear-gradient(45deg, #8b0000, #ff0000);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 25px;
+            margin-top: 120px;
+            animation: slideIn 0.6s ease-out;
+          }
+
+          @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+
+          .card-header {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px;
+            font-weight: bold;
+          }
+
+          .table-hover {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+
+          .table-hover thead {
+            background: #ff4444;
+            color: white;
+          }
+
+          .table-hover th {
+            border: none!important;
+            text-align: center;
+          }
+
+          .table-hover td {
+            text-align: center;
+            vertical-align: middle;
+          }
+
+          .table-hover tr:hover {
+            background: #ffe5e5;
+          }
+
+          .form-control {
+            border: 2px solid #ff4444;
+            border-radius: 25px;
+            padding: 12px 20px;
+            margin: 15px auto;
+            max-width: 250px;
+          }
+
+          .submit-btn {
+            background: linear-gradient(45deg, #ff0000, #8b0000);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+          }
+
+          .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          }
+
+          @media (max-width: 768px) {
+            .attendance-card {
+              margin: 20px 15px;
+              padding: 15px;
+            }
+
+            .table-hover {
+              font-size: 14px;
+            }
+          }
+        </style>
+      </head>
+
+      <body>
+        <form method="post">
+          <div class="attendance-card">
+            <div class="card-header">
+              Attendance Registration
+            </div>
+
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Attendance Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% csrf_token %}
+                {% for student in students %}
+                <tr>
+                  <td>{{ student.get_name }}</td>
+                  <td>{% render_field aform.present_status class="form-check-input" %}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <div class="text-center">
+              {% render_field aform.date type="date" class="form-control" placeholder="Select Date (month/day/year)" %}
+              <button type="submit" class="submit-btn">
+                Confirm Attendance
+                <i class="fas fa-check-circle ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </body>
+      {% endblock content %}

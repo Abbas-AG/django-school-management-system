@@ -1,0 +1,247 @@
+{% extends 'school/studentbase.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style media="screen">
+    .notice-image {
+      width: 100%;  /* The image will take up 100% of the container width */
+      max-width: 150px;  /* Set the maximum width for the image */
+      height: auto;
+      border-radius: 8px;
+      margin-left: 70%;  /* Increase the margin to push the image more to the right */
+      display: block;  /* Make the image a block element to be resizable */
+      cursor: pointer;  /* Change the cursor on hover */
+      transition: transform 0.3s ease;  /* Add a smooth transition */
+    }
+    @media screen and (max-width: 872px) {
+      .notice-image {
+        max-width: 120px;  /* Set the maximum width for the image on smaller screens */
+        margin-left: 65%;  /* Adjust the margin slightly to push the image more to the right */
+      }
+    }
+    @media screen and (max-width: 671px) {
+      .notice-image {
+        max-width: 120px;  /* Set the maximum width for the image on smaller screens */
+        margin-left: 55%;  /* Adjust the margin slightly to push the image more to the right */
+      }
+    }
+
+    @media screen and (max-width: 567px) {
+      .notice-image {
+        max-width: 100px;  /* Set the maximum width for the image on very small screens */
+        margin-left: 45%;  /* Adjust the margin more */
+      }
+    }
+
+
+    @media screen and (max-width: 435px) {
+      .notice-image {
+        max-width: 100px;  /* Set the maximum width for the image on very small screens */
+        margin-left: 35%;  /* Adjust the margin more */
+      }
+    }
+
+    @media screen and (max-width: 375px) {
+      .notice-image {
+        max-width: 100px;  /* Set the maximum width for the image on very small screens */
+        margin-left: 30%;  /* Adjust the margin more */
+      }
+    }
+    /* Enlarged image lightbox that appears above everything */
+    .lightbox {
+      display: none;  /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);  /* Dark background */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;  /* Make it appear above other content */
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    .alert {
+      margin-left: 10%;
+      margin-right: 10%;
+      padding: 20px;
+      background: -webkit-linear-gradient(left, #003f83, #0072ff);
+      color: white;
+      border-radius: 12px; /* Larger rounded corners */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Modern shadow effect */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      display: flex; /* Use flex to align the image and text side by side */
+      align-items: center;
+      animation: slide-in 0.5s ease-out;
+    }
+
+    /* Effect when hovering over the alert */
+    .alert:hover {
+      transform: scale(1.03); /* Slightly enlarge on hover */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow effect */
+    }
+
+    /* Add a slide-in effect to the alert */
+    @keyframes slide-in {
+      from {
+        transform: translateX(-50%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Style for the author image */
+    .author-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px; /* Add space between image and text */
+    }
+
+    /* Style for the alert text */
+    .alert-text {
+      flex: 1; /* Take up the remaining space */
+    }
+
+    /* Style for the author's name */
+    .alert .author-name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* Style for the post date */
+    .alert .date {
+      font-size: 12px;
+      color: #dddddd;
+      margin-top: 5px;
+    }
+
+    /* Style for the notification panel title */
+    .w3-panel {
+      background: -webkit-linear-gradient(left, #003f83, #0072ff);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 15px; /* Increased bottom margin */
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase; /* Convert the text to uppercase */
+    }
+
+    /* Customize the font for the text sections */
+    .alert p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .closebtn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .closebtn:hover {
+      background: rgba(255, 0, 0, 0.7); /* Change color on hover */
+    }
+
+    .closebtn:focus {
+      outline: none; /* Remove the outline when the button is focused */
+    }
+
+
+    /* Add margins between content sections */
+    .content-section {
+      margin-bottom: 15px;
+    }
+
+    /* Add top margin */
+    .main-content {
+      margin-top: 90px;
+    }
+    
+  </style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<div class="main-content">
+  <div class="content-section">
+    {% include 'school/student_dashboard_cards.html' %}
+  </div>
+
+  <!-- Notification Board -->
+  <div class="w3-panel">
+    <p>Announcement Board</p>
+  </div>
+
+  <br>
+
+  {% for n in notice %}
+    <div class="alert" id="notice-{{ n.id }}">
+      <div class="alert-text">
+          <span class="author-name">{{ n.by }}</span><br>
+          <p>{{ n.message }}</p>
+          <div class="date">{{ n.date }}</div>
+      </div>
+      {% if n.image %}
+        <img src="{{ n.image.url }}" alt="Notice Image" class="notice-image" onclick="openLightbox(this)">
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <!-- Lightbox window -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-image" src="" alt="Enlarged Image">
+    <button class="closebtn" onclick="closeLightbox()">&times;</button>
+  </div>
+  </div></div>
+  <script>
+  // Open the lightbox when clicking on the image
+  function openLightbox(image) {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImage = document.getElementById('lightbox-image');
+
+    // Set the enlarged image in the lightbox
+    lightboxImage.src = image.src;
+
+    // Show the lightbox
+    lightbox.style.display = 'flex';
+  }
+
+  // Close the lightbox when clicking on it or pressing the close button
+  function closeLightbox() {
+    var lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+  }
+  </script>
+
+  {% endblock content %}

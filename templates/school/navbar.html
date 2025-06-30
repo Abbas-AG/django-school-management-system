@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <style>
+    .navbar {
+      background-color: #0077e2;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar .nav-link {
+      color: #fff !important;
+      font-weight: bold;
+      transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .navbar .nav-link:hover {
+      color: #000 !important;
+      transform: scale(1.1);
+    }
+
+    .button {
+      cursor: pointer;
+      --c: #fff;
+      padding: 12px 28px;
+      margin: 1em;
+      position: relative;
+      min-width: 12em;
+      background: transparent;
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--c);
+      text-align: center;
+      text-transform: uppercase;
+      font-family: sans-serif;
+      letter-spacing: 0.1em;
+      border: 2px solid var(--c);
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+      transition: 0.5s;
+    }
+
+    .button span {
+      position: absolute;
+      width: 25%;
+      height: 100%;
+      background-color: var(--c);
+      transform: translateY(150%);
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+      left: calc((var(--n) - 1) * 25%);
+      transition: 0.5s;
+      transition-delay: calc((var(--n) - 1) * 0.1s);
+      z-index: -1;
+    }
+
+    .button:hover {
+      color: black;
+    }
+
+    .button:hover span {
+      transform: translateY(0) scale(2);
+    }
+
+    .button span:nth-child(1) {
+      --n: 1;
+    }
+
+    .button span:nth-child(2) {
+      --n: 2;
+    }
+
+    .button span:nth-child(3) {
+      --n: 3;
+    }
+
+    .button span:nth-child(4) {
+      --n: 4;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <a href="/" class="navbar-brand"><img style="border-radius: 5px; width:300px; box-shadow: 0 4px 4px rgba(255, 255, 255, 2)" src="{% static 'images/LOGO.png'%}"></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav">
+          <a href="/adminclick">
+            <button class="button">Admin
+              <span></span><span></span><span></span><span></span>
+            </button>
+          </a>
+          <a href="/teacherclick">
+            <button class="button">Teachers
+              <span></span><span></span><span></span><span></span>
+            </button>
+          </a>
+          <a href="/studentclick">
+            <button class="button">Students
+              <span></span><span></span><span></span><span></span>
+            </button>
+          </a>
+        </div>
+
+        <div class="navbar-nav">
+          <a href="/aboutus" class="nav-item nav-link">About Us</a>
+          <a href="/contactus" class="nav-item nav-link">Contact Us</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</body>
+
+</html>

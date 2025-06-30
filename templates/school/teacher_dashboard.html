@@ -1,0 +1,182 @@
+{% extends 'school/teacherbase.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style media="screen">
+    .notice-image {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      border-radius: 8px;
+      margin-left: 70%;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    @media screen and (max-width: 872px) {
+      .notice-image {
+        max-width: 120px;
+        margin-left: 65%;
+      }
+    }
+    @media screen and (max-width: 671px) {
+      .notice-image {
+        max-width: 120px;
+        margin-left: 55%;
+      }
+    }
+    @media screen and (max-width: 567px) {
+      .notice-image {
+        max-width: 100px;
+        margin-left: 45%;
+      }
+    }
+    @media screen and (max-width: 435px) {
+      .notice-image {
+        max-width: 100px;
+        margin-left: 35%;
+      }
+    }
+    @media screen and (max-width: 375px) {
+      .notice-image {
+        max-width: 100px;
+        margin-left: 30%;
+      }
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    .alert {
+      margin-left: 10%;
+      margin-right: 10%;
+      padding: 20px;
+      background: linear-gradient(45deg, #ff0000, #8b0000);
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      animation: slide-in 0.5s ease-out;
+    }
+    .main-content {
+      margin-top: 130px;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .alert:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .teacher-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+      border: 3px solid white;
+    }
+    .alert-content {
+      flex: 1;
+    }
+    .alert-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .alert-date {
+      font-size: 14px;
+      color: #ffd7d7;
+    }
+    .w3-panel {
+      background: linear-gradient(45deg, #8b0000, #ff0000);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .alert p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .closebtn {
+      color: white;
+      font-size: 28px;
+      margin-left: 20px;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
+    .closebtn:hover {
+      color: #ffd7d7;
+      opacity: 1;
+    }
+  </style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<div class="main-content">
+  {% include 'school/teacher_dashboard_cards.html' %}
+
+  <div class="w3-panel">
+    <p>Announcements Board</p>
+  </div>
+
+  {% for n in notice %}
+    <div class="alert" id="notice-{{ n.id }}">
+      <div class="alert-text">
+          <span class="author-name">{{ n.by }}</span><br>
+          <p>{{ n.message }}</p>
+          <div class="date">{{ n.date }}</div>
+      </div>
+      {% if n.image %}
+        <img src="{{ n.image.url }}" alt="Notice Image" class="notice-image" onclick="openLightbox(this)">
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-image" src="" alt="Enlarged Image">
+    <button class="closebtn" onclick="closeLightbox()">&times;</button>
+  </div>
+</div>
+<script>
+  function openLightbox(image) {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImage = document.getElementById('lightbox-image');
+    lightboxImage.src = image.src;
+    lightbox.style.display = 'flex';
+  }
+  function closeLightbox() {
+    var lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+  }
+</script>
+
+{% endblock content %}

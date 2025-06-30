@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+{% load static %}
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Account Status | LazyCoder</title>
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #fff;
+      background-size: 200% 200%;
+      color: #fff;
+      text-align: center;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .jumbotron {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: linear-gradient(135deg, #0072ff, #8811c5);
+      animation: gradientAnimation 6s infinite alternate;
+      border-radius: 15px;
+      margin-top: 250px;
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .jumbotron h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .jumbotron p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    .jumbotron a {
+      color: #e3d800;
+    }
+    .btn {
+      display: inline-block;
+      color: #fff;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      font-size: 1.2rem;
+      padding: 12px 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 5s ease-in-out;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to left, #ff416c, #ff4b2b);
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  {% include "school/navbar.html" %}
+  
+  <div class="jumbotron">
+    <h1>Welcome {{request.user.first_name}}</h1>
+    <p>Your account has not been approved yet.</p>
+    <p>Our team is reviewing your profile, and your registration will be confirmed soon!</p>
+    <hr>
+    <p>Please contact us: <a href=/contactus>here</a></p>
+
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn">Log out now</button>
+    </form>
+  </div>
+
+  {% include "school/footer.html" %}
+</body>
+
+</html>

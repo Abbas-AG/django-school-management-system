@@ -1,0 +1,14 @@
+{% if messages %}
+    {% for message in messages %}
+        <div id="message-box" style="padding: 10px; background-color: lightgreen; text-align: center;">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <script>
+        setTimeout(function() {
+            document.getElementById('message-box').style.display = 'none';
+            window.location.href = "/"; // Change '/' to your main page URL if different
+        }, 2000);  // Redirect after 2 seconds
+    </script>
+{% endif %}

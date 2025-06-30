@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Send Us Your Feedback</title>
+  <style>
+    body {
+      color: #fff;
+      background-color: #89a3d6;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: linear-gradient(45deg, #0072ff, #8811c5);
+      background-size: 200% 200%;
+      animation: gradientMove 4s infinite alternate;
+      color: white;
+      font-weight: bold;
+      line-height: 80px;
+      margin: 15% 0 0%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+      text-align: left;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #022f44;
+      margin-bottom: 15px;
+    }
+
+    .form-control:focus {
+      outline: none;
+      box-shadow: 0 0 6px #0ea5e9;
+      transform: scale(1.01);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+      background: #0062cc;
+      color: white;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    .btnSubmit:hover {
+      background: #004a99;
+    }
+
+    .confirmation {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 250px;
+    }
+
+    .confirmation h1 {
+      color: #0072ff;
+    }
+
+    .confirmation p {
+      color: #333;
+    }
+
+    .home-button {
+      background: #0072ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .note {
+        margin-top: 25%;
+      }
+      .confirmation {
+        margin-top: 50%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <br><br>
+  <div class="container confirmation">
+    <h1>Your message has been sent successfully!</h1>
+    <p>We will respond to your feedback soon.</p>
+    <hr>
+    <p>Check out other features on our website!</p>
+    <a class="home-button" href="/">Home</a>
+  </div>
+</body>
+</html>

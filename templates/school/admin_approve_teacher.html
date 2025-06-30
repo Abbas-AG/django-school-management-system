@@ -1,0 +1,156 @@
+{% extends 'school/adminbase.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <style>
+    body {
+      background-color: #f4f7fc;
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .panel {
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .panel-heading {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    .table th, .table td {
+      text-align: center;
+      padding: 12px;
+      cursor: pointer;
+    }
+    .table thead {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      color: #fff;
+    }
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    .actions-overlay {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      text-align: center;
+      z-index: 1000;
+    }
+    .btn {
+      border-radius: 50px;
+      padding: 8px 15px;
+      margin: 5px;
+    }
+    .btn-success {
+      background-color: #2ecc71;
+      border-color: #2ecc71;
+    }
+    .btn-danger {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+    }
+    .btn-secondary {
+      background-color: #95a5a6;
+      border-color: #95a5a6;
+    }
+    .overlay-bg {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    @media (max-width: 768px) {
+      .table th, .table td {
+        font-size: 0.9rem; /* Slightly reduce the font size */
+        padding: 8px;
+      }
+    }
+
+  </style>
+</head>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="panel">
+        <div class="panel-heading">Teacher Management</div> <!-- translated from إدارة الأساتذة -->
+        <div class="table-responsive">
+          <table class="table table-hover" id="teachers-table">
+            <thead>
+              <tr>
+                <th>Name</th> <!-- translated from الاسم -->
+                <th>Phone Number</th> <!-- translated from رقم الهاتف -->
+                <th>Salary</th> <!-- translated from الراتب -->
+                <th>Join Date</th> <!-- translated from تاريخ الانضمام -->
+              </tr>
+            </thead>
+            <tbody>
+              {% for t in teachers %}
+                <tr class="teacher-row" data-id="{{ t.id }}">
+                  <td>{{ t.get_name }}</td>
+                  <td>{{ t.mobile }}</td>
+                  <td>{{ t.salary }}</td>
+                  <td>{{ t.joindate }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay-bg"></div>
+<div class="actions-overlay" id="actions-overlay">
+  <p id="teacher-name"></p>
+  <a class="btn btn-secondary" id="close-overlay">Go Back</a> <!-- translated from رجوع -->
+  <a class="btn btn-success" id="approve-link">Approve</a> <!-- translated from قبول -->
+  <a class="btn btn-danger" id="reject-link">Reject</a> <!-- translated from رفض -->
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.teacher-row').click(function() {
+      var id = $(this).data('id');
+      var name = $(this).find('td:first').text();
+      $('#teacher-name').text(name);
+      $('#approve-link').attr('href', `/approve-teacher/${id}`);
+      $('#reject-link').attr('href', `/delete-teacher/${id}`);
+      $('.overlay-bg, #actions-overlay').fadeIn();
+    });
+
+    $('#close-overlay, .overlay-bg').click(function() {
+      $('.overlay-bg, #actions-overlay').fadeOut();
+    });
+  });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .card {
+      position: relative;
+      width: 220px;
+      height: 320px;
+      background: #0077e2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      font-weight: bold;
+      border-radius: 15px;
+      cursor: pointer;
+      text-align: center;
+      overflow: hidden;
+      color: white;
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 70px;
+    }
+
+    .card::before,
+    .card::after {
+      position: absolute;
+      content: "";
+      width: 20%;
+      height: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      font-weight: bold;
+      background-color: #0ea5e9;
+      transition: all 0.5s;
+    }
+
+    .card::before {
+      top: 0;
+      right: 0;
+      border-radius: 0 15px 0 100%;
+    }
+
+    .card::after {
+      bottom: 0;
+      left: 0;
+      border-radius: 0 100% 0 15px;
+    }
+
+    .card:hover::before,
+    .card:hover::after {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      transition: all 0.5s;
+    }
+
+    .card:hover::after {
+      content: "Click to Login";
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 10px;
+      justify-content: center;
+    }
+
+    .grid-item {
+      display: flex;
+      justify-content: center;
+    }
+
+    .card img {
+      width: 50%;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    .title {
+      font-size: 18px;
+      margin-top: 10px;
+      color: white;
+    }
+
+    a:link,
+    a:visited {
+      text-decoration: none;
+      color: white;
+    }
+
+    .card-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @media screen and (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <a href="/adminclick">
+        <div class="card">
+          <div class="card-content">
+            <img src="{% static 'images/admin.png' %}" alt="Admin">
+            <p class="title">Admin</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="grid-item">
+      <a href="/teacherclick">
+        <div class="card">
+          <div class="card-content">
+            <img src="{% static 'images/teacher.png' %}" alt="Teacher">
+            <p class="title">Teachers</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="grid-item">
+      <a href="/studentclick">
+        <div class="card">
+          <div class="card-content">
+            <img src="{% static 'images/student1.png' %}" alt="Student">
+            <p class="title">Students</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</body>
+
+</html>

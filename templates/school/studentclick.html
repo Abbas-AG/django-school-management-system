@@ -1,0 +1,95 @@
+{% extends 'school/homebase.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<meta property="og:title" content="Al-Tamayuz School">
+<meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+<meta property="og:image" content="{% static 'images/icon.png' %}">
+<meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+<meta property="og:color" content="#0056b3">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+    
+    <style>
+        /* Background animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .jumbotron {
+            background: linear-gradient(45deg, #0092ff, #0056b3);
+            background-size: 200% 200%;
+            animation: gradientAnimation 4s infinite alternate;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 210px;
+            margin-bottom: 20px;
+        }
+
+        .jumbotron h1 {
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        .jumbotron p {
+            font-size: 1.2rem;
+        }
+
+        /* Button animations */
+        .btn-custom {
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            border: none;
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+        }
+
+        .btn-register:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            transform: scale(1.05);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(135deg, #0056b3, #003f7f);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome, Student!</h1>
+            <p class="lead">Join us in the school management system for a smooth and exceptional learning experience.</p>
+            <hr class="my-4">
+            <p>You can create an account or log in to access the available features.</p>
+            <p class="lead">
+                <a class="btn btn-custom btn-register" href="studentsignup" role="button">Create an Account</a>
+                <a class="btn btn-custom btn-login" href="studentlogin" role="button">Login</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style type="text/css">
+    a:link {
+      text-decoration: none;
+    }
+
+    /* Enhance the gradient animation */
+    @keyframes gradientAnimation {
+      0% {
+        background: linear-gradient(45deg, #007bff, #004085); /* Blue gradient */
+      }
+      50% {
+        background: linear-gradient(45deg, #004085, #007bff); /* Reverse gradient */
+      }
+      100% {
+        background: linear-gradient(45deg, #007bff, #004085); /* Return to the original gradient */
+      }
+    }
+
+    .order-card {
+      color: #fff;
+      background: linear-gradient(45deg, #007bff, #004085); /* Blue gradient */
+      transition: transform 0.3s ease; /* Scale effect on hover */
+    }
+
+    .order-card:hover {
+      transform: scale(1.05); /* Scale the card on hover */
+    }
+
+    .card {
+      border-radius: 10px;
+      -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+      border: none;
+      margin-bottom: 30px;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card .card-block {
+      padding: 25px;
+    }
+
+    .order-card i {
+      font-size: 26px;
+      margin-right: 10px; /* Add space between the emoji and text */
+    }
+
+    .f-left {
+      float: left;
+    }
+
+    .f-right {
+      float: right;
+    }
+
+    .text-size {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Name</h6>
+            <h2 class="text-right"><i class="fas fa-user-tie f-left"></i></h2>
+            <p><span class="text-size">{{request.user.first_name}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Mobile</h6>
+            <h2 class="text-right"><i class="fas fa-mobile-alt f-left"></i></h2>
+            <p><span class="text-size">{{mobile}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Roll Number</h6>
+            <h2 class="text-right"><i class="fas fa-list-ol f-left"></i></h2>
+            <p><span class="text-size">{{roll}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Fee</h6>
+            <h2 class="text-right"><i class="fas fa-dollar f-left"></i></h2>
+            <p><span class="text-size">{{fee}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</body>
+
+</html>

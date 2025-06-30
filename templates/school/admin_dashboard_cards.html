@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+
+<head>
+  <meta charset="utf-8">
+
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background: linear-gradient(to right, #f2a100, #9a6700); }
+    }
+
+    .order-card {
+      color: #fff;
+      margin-top: 90px;
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      transition: transform 0.3s ease;
+    }
+
+    .order-card:hover {
+      transform: scale(1.05);
+    }
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 1px 2.94px rgba(4, 26, 55, 0.16);
+      border: none;
+      margin-bottom: 80px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card .card-block {
+      padding: 25px;
+    }
+
+    .order-card i {
+      font-size: 26px;
+      margin-right: 10px;
+    }
+
+    .f-left {
+      float: left;
+    }
+
+    .f-right {
+      float: right;
+    }
+
+    .text-size {
+      font-size: 20px;
+    }
+  </style>
+  </head>
+
+<body>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-blue order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Total Teachers</h6> <!-- translated from مجموع المدرسين -->
+            <h2 class="text-right"><i class="fas fa-chalkboard-teacher f-left"></i><span>{{teachercount}}</span></h2>
+            <p class="m-b-0">Teachers Pending Approval<span class="f-right">{{pendingteachercount}}</span></p> <!-- translated from مدرسين تحت التاكيد -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Total Students</h6> <!-- translated from مجموع الطلاب -->
+            <h2 class="text-right"><i class="fas fa-user-graduate f-left"></i><span>{{studentcount}}</span></h2>
+            <p class="m-b-0">Students Pending Approval<span class="f-right">{{pendingstudentcount}}</span></p> <!-- translated from طلاب تحت التاكيد -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-yellow order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Teacher Salary</h6> <!-- translated from راتب المدرس -->
+            <h2 class="text-right"><i class="fas fa-search-dollar f-left"></i><span>{{teachersalary}}</span></h2>
+            <p class="m-b-0">Pending Report<span class="f-right">{{pendingteachersalary}}</span></p> <!-- translated from تحت التقرير -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-pink order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Student Fees</h6> <!-- translated from رسوم الطلاب -->
+            <h2 class="text-right"><i class="fas fa-dollar f-left"></i><span>{{studentfee}}</span></h2>
+            <p class="m-b-0">Pending Report<span class="f-right">{{pendingstudentfee}}</span></p> <!-- translated from تحت التقرير -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--
+written By : sumit kumar
+facebook : fb.com/sumit.luv
+-->
+
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+  </script>
+</body>
+
+</html>

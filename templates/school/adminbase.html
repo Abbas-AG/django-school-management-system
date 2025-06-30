@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Management Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Tajawal", sans-serif;
+      background-color: #f7f9fc;
+      display: flex;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      width: 100%;
+      color: white;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .menu-toggle {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.3s;
+    }
+
+    .menu-toggle:hover {
+      transform: rotate(90deg);
+    }
+
+    .header-title {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .header-title i {
+      margin-left: 8px;
+      font-size: 30px;
+    }
+
+    .logout_btn {
+      background: linear-gradient(45deg, #ff4b5c, #ff7f32);
+      color: white;
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+      margin: 10px 0;
+      width: auto;
+      text-align: center;
+      margin-left: 100px;
+    }
+
+    .logout_btn:hover {
+      background: linear-gradient(45deg, #ff7f32, #ff4b5c);
+    }
+
+    .sidebar {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      width: 300px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: -300px;
+      padding-top: 40px;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index: 2000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar .profile-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .profile_image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid white;
+      margin-bottom: 15px;
+    }
+
+    .sidebar h4 {
+      color: white;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar .nav-items a {
+      display: flex;
+      align-items: center;
+      padding: 18px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s;
+      border-radius: 5px;
+    }
+
+    .sidebar .nav-items a:hover {
+      background: #f2a100;
+    }
+
+    .sidebar .nav-items a i {
+      margin-right: 15px;
+      font-size: 20px;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 100px 30px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .close-btn {
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 15px;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ff7f32;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        left: -100%;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <div class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-title">
+        School Management Dashboard
+        <i class="fas fa-school"></i>
+      </div>
+    </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+    <div class="profile-container">
+      <img src="{% static 'images/admin.png' %}" class="profile_image" alt="">
+      <h4>{{ request.user.first_name }}</h4>
+    </div>
+    <div class="nav-items">
+      <a href="/admin-dashboard"><i class="fas fa-desktop"></i> Dashboard</a>
+      <a href="/admin-teacher"><i class="fas fa-chalkboard-teacher"></i> Teachers</a>
+      <a href="/admin-student"><i class="fas fa-user-graduate"></i> Students</a>
+      <a href="/admin-attendance"><i class="fas fa-address-card"></i> Attendance</a>
+      <a href="/admin-fee"><i class="fas fa-search-dollar"></i> Fees</a>
+      <a href="/add_lesson"><i class="fa fa-plus-circle"></i> Add Lessons</a>
+      <a href="/admin-notice"><i class="fas fa-bullhorn"></i> Notices</a>
+      <form action="{% url 'logout' %}" method="post" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="logout_btn">Logout</button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="content">
+    {% block content %}
+    {% endblock content %}
+  </div>
+  
+  {% include 'school/footer4.html' %}
+  
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

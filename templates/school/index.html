@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta charset="utf-8">
+  <title>Al-Tamayuz School Management</title>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3">
+  <meta property="og:color" content="#0056b3">
+  <style>
+    body {
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .jumbotron {
+      margin: 0;
+      background-image: url('{% static "images/dd.png" %}');
+    }
+
+    @keyframes wave {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .jumbotron h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(0, 119, 226, 1);
+      text-align: center;
+      background: linear-gradient(180deg, #000, #0077e2, #000);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: wave 3s ease-in-out infinite;
+    }
+
+    .jumbotron p {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(0, 119, 226, 1);
+      text-align: center;
+      background: linear-gradient(270deg, #000, #0077e2, #000);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: wave 3s ease-in-out infinite;
+    }
+
+    .button-container {
+      position: relative;
+      top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .animated-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16px 36px;
+      border: 4px solid;
+      border-color: transparent;
+      font-size: 16px;
+      background-color: inherit;
+      border-radius: 100px;
+      font-weight: 600;
+      color: #1e1e1e;
+      box-shadow: 0 0 0 2px #1e1e1e;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .animated-button svg {
+      position: absolute;
+      width: 24px;
+      fill: #1e1e1e;
+      z-index: 9;
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .animated-button .arr-1 {
+      right: 16px;
+    }
+
+    .animated-button .arr-2 {
+      left: -25%;
+    }
+
+    .animated-button .circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background-color: #007bff;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .animated-button .text {
+      position: relative;
+      z-index: 1;
+      transform: translateX(-12px);
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .animated-button:hover {
+      box-shadow: 0 0 0 12px transparent;
+      color: #1e1e1e;
+      border-radius: 12px;
+    }
+
+    .animated-button:hover .arr-1 {
+      right: -25%;
+    }
+
+    .animated-button:hover .arr-2 {
+      left: 16px;
+    }
+
+    .animated-button:hover .text {
+      transform: translateX(12px);
+    }
+
+    .animated-button:hover svg {
+      fill: #1e1e1e;
+    }
+
+    .animated-button:active {
+      scale: 0.95;
+      box-shadow: 0 0 0 4px #007bff;
+    }
+
+    .animated-button:hover .circle {
+      width: 220px;
+      height: 220px;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  {% include "school/navbar.html" %}
+
+  <div class="jumbotron">
+    <h1 style="margin: 130px 0;">Welcome to Al-Tamayuz School for Gifted Students</h1>
+    <p>One of the leading schools in Iraq specializing in teaching gifted students, distinguished by its outstanding students and qualified teachers.</p>
+    <div class="button-container">
+      <a href="/studentsignup">
+        <button class="animated-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          </svg>
+          <span class="text">Apply Now</span>
+          <span class="circle"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          </svg>
+        </button>
+      </a>
+    </div>
+  </div>
+
+  {% include "school/admin_teacher_student_card.html" %}
+  {% include "school/footer.html" %}
+</body>
+</html>

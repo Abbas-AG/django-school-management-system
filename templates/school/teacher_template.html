@@ -1,0 +1,53 @@
+{% extends 'school/teacherbase.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>الصفوف التي تدرسها</h4>
+            {% for lesson in lessons %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    {{ lesson.get_grade_display }} - {{ lesson.name }}
+                </div>
+                <div class="card-body">
+                    <h5>الطلاب:</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>إضافة درجة</th>
+                                <th>الدرجات السابقة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students|filter_by_grade:lesson.grade %}
+                            <tr>
+                                <td>{{ student.get_name }}</td>
+                                <td>
+                                    <form method="post" class="add-exam-form">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="lesson_id" value="{{ lesson.id }}">
+                                        <input type="hidden" name="student_id" value="{{ student.id }}">
+                                        <input type="text" name="exam_name" placeholder="اسم الامتحان" required>
+                                        <input type="number" step="0.01" name="score" placeholder="الدرجة" required>
+                                        <button type="submit" class="btn btn-sm btn-primary">حفظ</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    {% for exam in exams|get_item:student.id %}
+                                        {{ exam.exam_name }}: {{ exam.score }}<br>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

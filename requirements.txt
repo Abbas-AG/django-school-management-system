@@ -1,0 +1,4 @@
+Django>=3.2
+django-environ>=0.12.0
+email-validator>=2.2.0
+Pillow>=8.0.0

@@ -1,0 +1,91 @@
+{% extends 'school/studentbase.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+      color: #007bff;
+    }
+
+    .row {
+      margin-top: 50px;
+    }
+
+    .panel {
+      border: 1px solid #007bff;
+      border-radius: 8px;
+    }
+
+    .panel-heading {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .table th, .table td {
+      text-align: center;
+      padding: 12px;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="panel panel-primary col-md-12">
+      <div class="panel-heading">
+        <h6 class="panel-title">Available Lessons</h6>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Lesson Name</th>
+            <th>Description</th>
+            <th>Teacher</th>
+          </tr>
+        </thead>
+        {% for lesson in lessons %}
+        <tr>
+          <td>
+            <a href="{% url 'student-lesson-detail' lesson.id %}" 
+               class="text-decoration-none text-primary fw-bold">
+               <i class="fas fa-book me-2"></i>{{ lesson.name }}
+            </a>
+          </td>
+          <td>{{ lesson.description }}</td>  <!-- Lesson description -->
+          <td>{{ lesson.teacher }}</td>  <!-- Teacher name -->
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

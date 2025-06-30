@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Tajawal", sans-serif;
+      background-color: #f7f9fc;
+      display: flex;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: -webkit-linear-gradient(left, #003f83, #0072ff);
+      border-bottom-left-radius: 20px; /* Top left corner rounding */
+      border-bottom-right-radius: 20px; /* Top right corner rounding */
+      width: 100%;
+      color: white;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .menu-toggle {
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.3s;
+    }
+
+    .menu-toggle:hover {
+      transform: rotate(90deg);
+    }
+
+    .header-title {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .header-title i {
+      margin-left: 8px;
+      font-size: 30px;
+    }
+
+.logout_btn {
+  background: linear-gradient(45deg, #ff4b5c, #ff7f32);
+  color: white;
+  padding: 6px 10px; /* Reduced size */
+  font-size: 12px; /* Reduced size */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  margin: 10px 0;
+  width: auto;
+  text-align: center;
+  margin-left: 100px; /* Added space to move the button to the right */
+}
+
+    .logout_btn:hover {
+      background: linear-gradient(45deg, #ff7f32, #ff4b5c);
+    }
+
+    .sidebar {
+      background: #005dc1;
+      width: 300px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: -300px;
+      padding-top: 40px;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index: 2000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar .profile_image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 30px;
+      border: 3px solid white;
+    }
+
+    .sidebar h4 {
+      color: white;
+      font-size: 22px;
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      color: #f8f9fa;
+      display: flex;
+      align-items: center;
+      padding: 18px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: 0.3s ease;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+      background: #007bff;
+      transform: scale(1);
+    }
+
+    .sidebar i {
+      margin-left: 15px; /* Larger space between icon and text */
+      font-size: 20px;
+    }
+
+    .sidebar .profile-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .nav-items {
+      margin-top: 20px;
+    }
+
+    .sidebar .nav-items a {
+      padding-left: 40px;
+      transition: 0.2s;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 80px 30px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .close-btn {
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      left: 15px;
+      z-index: 2001;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ff7f32;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        left: -100%;
+        padding-top: 60px; /* Adjust top margin when opening sidebar */
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .sidebar .profile-container {
+        margin-bottom: 20px;
+      }
+
+      /* New content layout */
+      .sidebar .nav-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center align items */
+        margin-top: 20px;
+      }
+
+      .sidebar .nav-items a {
+        padding: 12px 0;
+        text-align: center; /* Center text */
+        width: 100%;
+        display: flex;
+        justify-content: center; /* Center icons and text */
+      }
+
+      .sidebar .nav-items a i {
+        margin-left: 0; /* Remove space between icon and text */
+      }
+
+      .sidebar .logout_btn {
+        width: 80%; /* Center logout button */
+        margin-top: 20px;
+        display: block; /* Ensure button behaves as block element */
+        margin-left: auto;
+        margin-right: auto; /* Center button */
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <div class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="header-title">
+        School Management
+        <i class="fas fa-school"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <!-- Close button for sidebar -->
+    <span class="close-btn" onclick="toggleSidebar()">×</span>
+    
+    <div class="profile-container">
+      <img src="{% static 'images/student1.png' %}" class="profile_image" alt="Student Profile">
+      <h4>{{ request.user.first_name }}</h4>
+    </div>
+
+    <div class="nav-items">
+      <a href="/student-dashboard"><i class="fas fa-desktop"></i><span style="margin-left: 10px;">Dashboard</span></a> <!-- Space between text and emoji -->
+      <a href="/student-attendance"><i class="fas fa-address-card"></i><span style="margin-left: 10px;">Attendance</span></a> <!-- Space between text and emoji -->
+      <a href="/student-lessons"><i class="fa fa-book"></i><span style="margin-left: 10px;">Grades</span></a> <!-- Space between text and emoji -->
+    </div>
+
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="logout_btn">Log out</button> <!-- Smaller logout button -->
+    </form>
+
+  </div>
+
+  <!-- Page content -->
+  <div class="content">
+    {% block content %}
+    {% endblock content %}
+  </div>
+  
+  {% include "school/footer2.html" %}
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

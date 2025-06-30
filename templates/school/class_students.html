@@ -1,0 +1,252 @@
+{% extends 'school/teacherbase.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3">
+  <meta property="og:color" content="#0056b3">
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .grades-card {
+      background: linear-gradient(45deg, #8b0000, #ff0000);
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      margin: 30px auto;
+      max-width: 900px;
+      padding: 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 28px;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th, .table td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 15px;
+    }
+
+    .table-hover tbody tr:hover {
+      background: #ffe5e5;
+      transform: translateX(5px);
+    }
+
+    .form-select, .form-control {
+      border-radius: 15px;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      background: #f8f9fa;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .form-select:focus, .form-control:focus {
+      border-color: #007bff;
+      background: #ffffff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    }
+
+    .submit-btn {
+      background: linear-gradient(45deg, #ff0000, #8b0000);
+      border: none;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 20px;
+      color: white;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .action-buttons a.btn-info {
+      background: linear-gradient(45deg, #ff0000, #8b0000) !important;
+      border: none !important;
+      padding: 12px !important;
+      font-size: 18px !important;
+      font-weight: bold !important;
+      border-radius: 20px !important;
+      color: white !important;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s ease !important;
+    }
+
+    .action-buttons a.btn-info:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .grades-card {
+        margin: 20px;
+        padding: 15px;
+        margin-top: 80px;
+      }
+
+      .table th, .table td {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .submit-btn, .action-buttons a.btn-info {
+        font-size: 16px;
+        padding: 10px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grades-card">
+    <div class="card-header">
+      <i class="fas fa-user-graduate"></i>
+      Class students:
+      {% if grade == 'one' %}
+        First Year Intermediate <!-- أول متوسط -->
+      {% elif grade == 'two' %}
+        Second Year Intermediate <!-- ثاني متوسط -->
+      {% elif grade == 'three' %}
+        Third Year Intermediate <!-- ثالث متوسط -->
+      {% elif grade == 'four' %}
+        Fourth Year Secondary <!-- رابع إعدادي -->
+      {% elif grade == 'five' %}
+        Fifth Year Secondary <!-- خامس إعدادي -->
+      {% elif grade == 'six' %}
+        Sixth Year Secondary <!-- سادس إعدادي -->
+      {% else %}
+        Undefined
+      {% endif %}
+    </div>
+
+    <p id="warning-message" style="color: red; display: none;">Please choose a subject before proceeding!</p>
+
+    <div class="table-container">
+      <form method="post" id="examForm">
+        {% csrf_token %}
+
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <select name="lesson" id="lesson-select" class="form-select" required>
+              <option value="">Choose a subject</option>
+              {% for lesson in lessons %}
+                <option value="{{ lesson.id }}">{{ lesson.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <input type="text" name="exam_name" class="form-control" placeholder="Exam Name" required>
+          </div>
+          <div class="col-md-4">
+            <input type="number" name="total_marks" class="form-control" placeholder="Total Marks" required>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="table-danger">
+              <tr>
+                <th>Student Name</th>
+                <th>Marks Obtained</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for student in students %}
+                <tr>
+                  <td><strong>{{ student.get_name }}</strong></td>
+                  <td>
+                    <input type="number" name="marks_{{ student.id }}" class="form-control text-center marks-input" min="0" max="100" required>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="submit-btn" id="saveBtn">
+            <i class="fas fa-save"></i> Save Changes
+          </button>
+          <a href="#" id="history-link" class="btn btn-info">
+            <i class="fas fa-history"></i> View Previous Exams
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+<script>
+  document.getElementById('lesson-select').addEventListener('change', function() {
+    let lessonId = this.value;
+    let historyLink = document.getElementById('history-link');
+    let messageBox = document.getElementById('warning-message');
+    if (lessonId) {
+      historyLink.href = "{% url 'exam_history' %}?lesson_id=" + lessonId;
+      historyLink.style.pointerEvents = "auto";
+      historyLink.style.opacity = "1";
+      messageBox.style.display = "none";
+    } else {
+      historyLink.href = "#";
+      historyLink.style.pointerEvents = "none";
+      historyLink.style.opacity = "0.5";
+      messageBox.style.display = "block";
+    }
+  });
+
+  document.getElementById('history-link').addEventListener('click', function(event) {
+    let lessonId = document.getElementById('lesson-select').value;
+    if (!lessonId) {
+      event.preventDefault();
+      alert("Please choose a subject before proceeding!");
+    }
+  });
+</script>
+
+{% endblock %}

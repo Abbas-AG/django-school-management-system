@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+{% load widget_tweaks %}
+{% load static %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <title>School Registration</title>
+  <style>
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Background animation for the title */
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .note {
+      text-align: center; /* Ensure text is centered */
+      height: 80px;
+      background: linear-gradient(45deg, #0072ff, #8811c5);
+      background-size: 200% 200%;
+      animation: gradientMove 4s infinite alternate;
+      color: white;
+      font-weight: bold;
+      line-height: 80px;
+      margin: 10% 0 0%; /* Increase top margin */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      direction: ltr; /* Set text direction to natural */
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+      text-align: right;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 100%;
+      cursor: pointer;
+      background: #0062cc;
+      color: white;
+      font-size: 1.2rem;
+      transition: 0.3s;
+    }
+
+    .btnSubmit:hover {
+      background: #004a99;
+    }
+
+    .text-center {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    .text-center a {
+      color: #0062cc;
+      font-weight: bold;
+    }
+
+    .text-center a:hover {
+      color: #004a99;
+    }
+  </style>
+</head>
+
+<body>
+  {% include "school/navbar.html" %}
+  <br><br><br><br>
+
+  <!--- New Student Registration Page -->
+  <form method="post">
+    {% csrf_token %}
+    <div class="container register-form">
+      <div class="form">
+        <div class="note">
+          <p>New Student Registration</p>
+        </div>
+
+        <div class="form-content">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                {% render_field form1.first_name class="form-control" placeholder="First Name" %}
+              </div>
+              <div class="form-group">
+                {% render_field form1.username class="form-control" placeholder="Username" %}
+              </div>
+              <div class="form-group">
+                <select name="cl" id="cl" class="form-control">
+                  <option value="one" {% if form2.cl.value == 'one' %}selected{% endif %}>First Year Intermediate</option>
+                  <option value="two" {% if form2.cl.value == 'two' %}selected{% endif %}>Second Year Intermediate</option>
+                  <option value="three" {% if form2.cl.value == 'three' %}selected{% endif %}>Third Year Intermediate</option>
+                  <option value="four" {% if form2.cl.value == 'four' %}selected{% endif %}>Fourth Year Secondary</option>
+                  <option value="five" {% if form2.cl.value == 'five' %}selected{% endif %}>Fifth Year Secondary</option>
+                  <option value="six" {% if form2.cl.value == 'six' %}selected{% endif %}>Sixth Year Secondary</option>
+                </select>
+              </div>
+              <div class="form-group">
+                {% render_field form2.mobile class="form-control" placeholder="Phone Number" %}
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                {% render_field form1.last_name class="form-control" placeholder="Last Name" %}
+              </div>
+              <div class="form-group">
+                {% render_field form1.password class="form-control" placeholder="Password" %}
+              </div>
+              <div class="form-group">
+                {% render_field form2.roll class="form-control" placeholder="Student ID" %}
+              </div>
+              <div class="form-group">
+                {% render_field form2.fee class="form-control" placeholder="Tuition Fees" %}
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btnSubmit">Register</button>
+          <div class="text-center">Already have an account? <a href="studentlogin">Log in here</a></div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  {% include "school/footer.html" %}
+</body>
+
+</html>

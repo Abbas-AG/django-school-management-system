@@ -1,0 +1,252 @@
+{% extends 'school/studentbase.html' %}
+{% block content %}
+{% block styles %}
+{% load static %}
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+<style>
+    html, body {
+        overflow-x: hidden;
+        font-family: 'Tajawal', sans-serif;
+        background-color: #f4f6f9;
+    }
+
+    .container-fluid {
+        display: flex;
+        justify-content: flex-start;
+        padding: 20px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .lesson-card {
+        width: 90%;
+        max-width: 800px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        margin-left: 15%;
+    }
+
+    .lesson-card:hover {
+        transform: scale(1.02);
+    }
+
+    @media (max-width: 1024px) {
+        .lesson-card {
+            margin-left: 5%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .lesson-card {
+            margin-left: 1%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .lesson-card {
+            margin-left: -5%;
+        }
+    }
+
+    .card-header-custom {
+        background: linear-gradient(to right, #003f83, #0072ff);
+        padding: 25px;
+        color: white;
+        text-align: center;
+        border-radius: 15px 15px 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Shimmer effect */
+    .card-header-custom::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.001) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.001) 80%);
+        animation: shimmer 5.5s infinite linear;
+    }
+
+    /* Shimmer animation */
+    @keyframes shimmer {
+        0% {
+            left: -100%;
+        }
+        100% {
+            left: 100%;
+        }
+    }
+
+    .lesson-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    .badges-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+
+    .teacher-badge, .grade-badge {
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .card-body {
+        padding: 25px;
+    }
+
+    .description-box {
+        background: #ecf0f1;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .results-section h4 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .results-table {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background: linear-gradient(to right, #003f83, #0072ff 50%, #003f83);
+        color: white;
+        font-weight: 600;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .badge.bg-success {
+        background: #27ae60 !important;
+        padding: 8px 12px;
+        border-radius: 15px;
+        font-size: 0.9rem;
+    }
+    .badge.bg-danger {
+        background: #e74c3c !important;
+        padding: 8px 12px;
+        border-radius: 15px;
+        font-size: 0.9rem;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 30px 15px;
+        background: #ecf0f1;
+        border-radius: 10px;
+        color: #7f8c8d;
+    }
+
+    .empty-state i {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #bdc3c7;
+    }
+
+    .empty-state h5 {
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+<div class="container-fluid">
+    <div class="lesson-card">
+        <div class="card-header-custom">
+            <h1 class="lesson-title">{{ lesson.name }}</h1>
+            <div class="badges-container">
+                <span class="teacher-badge">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    {{ lesson.teacher.get_name }}
+                </span>
+                <span class="grade-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                    {{ lesson.get_grade_display }}
+                </span>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="description-box">
+                <h5><i class="fas fa-align-left"></i> Subject Description</h5>
+                <p>{{ lesson.description }}</p>
+            </div>
+
+            <div class="results-section">
+                <h4><i class="fas fa-chart-line"></i> Results</h4>
+                {% if exams %}
+                    <div class="results-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Exam</th>
+                                    <th>Total Marks</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for exam in exams %}
+                                <tr>
+                                    <td>{{ exam.exam_name }}</td>
+                                    <td>{{ exam.total_marks }}</td>
+                                    <td>
+                                        <span class="badge {% if exam.obtained_marks < exam.half_marks %}bg-danger{% else %}bg-success{% endif %}">
+                                            {{ exam.obtained_marks }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h5>No results available</h5>
+                        <p>Results will be displayed here once available</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

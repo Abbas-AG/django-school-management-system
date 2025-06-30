@@ -1,0 +1,36 @@
+{% extends 'school/studentbase.html' %}
+{% block content %}
+
+{% load static %}
+
+<div class="container">
+  <div class="row">
+    <div class="panel panel-primary col-md-12">
+      <div class="panel-heading">
+        <h6 class="panel-title">الدروس المضافة لكل صف</h6>
+      </div>
+      <table class="table table-hover" id="lessons-table">
+        <thead>
+          <tr>
+            <th>اسم الصف</th>
+            <th>اسم المادة</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lesson in lessons %}
+            <tr>
+              <td>{{ lesson.class_name }}</td>
+              <td>{{ lesson.lesson_name }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="2">لا توجد دروس متاحة لهذا الصف</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

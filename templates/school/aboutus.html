@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Al-Tamayuz School for the Distinguished</title>
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    .jumbotron {
+      text-align: center;
+      padding: 50px 20px;
+      border-bottom: 2px solid #0077e2;
+    }
+
+    .alert {
+      background-color: #0077e2;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.4rem;
+      width: 50%;
+      margin: 20px auto;
+      border-radius: 5px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 40px;
+    }
+
+    .feature {
+      width: 30%;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .feature svg {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      fill: #0077e2;
+    }
+
+    .classes {
+      margin-top: 50px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .class-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .class-item {
+      background: #f8f9fa;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 200px;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      background-color: #0077e2;
+      padding: 50px 20px;
+      border-radius: 8px;
+      text-align: center;
+      color: white;
+      margin-top: 50px;
+    }
+
+    .gallery-title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 6s ease-in-out;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox Window */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 2000; /* Stay above the Navbar */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 119, 226, 0.3);
+      transition: transform 1s ease-in-out;
+    }
+
+    .lightbox.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox .close, .lightbox .prev, .lightbox .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: #0077e2;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 1s;
+    }
+
+    .lightbox .close {
+      top: 20px;
+      right: 30px;
+      color: #0077e2;
+      font-size: 50px;
+      transform: none;
+    }
+
+    .lightbox .prev {
+      left: 10%;
+    }
+
+    .lightbox .next {
+      right: 10%;
+    }
+
+    .lightbox .prev:hover, .lightbox .next:hover, .lightbox .close:hover {
+      background: rgba(0, 119, 226, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+  {% include "school/navbar.html" %}
+  <div class="container">
+    <div class="alert">About Us!</div>
+    <div class="jumbotron">
+      <h1>Welcome to Al-Tamayuz School for the Distinguished</h1>
+      <p>
+        Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <svg viewBox="0 0 576 512">
+          <path d="M528 320H384c-26.5 0-48 21.5-48 48v96H128V48h256v144c0 8.8 7.2 16 16 16h128v112c0 26.5 21.5 48 48 48s48-21.5 48-48V152c0-12.7-5.1-24.9-14.1-33.9L417.9 14.1C408.9 5.1 396.7 0 384 0H112C85.5 0 64 21.5 64 48v416c0 26.5 21.5 48 48 48h176l160 0h80c26.5 0 48-21.5 48-48V368c0-26.5-21.5-48-48-48z" />
+        </svg>
+        <h3>Advanced Curricula</h3>
+        <p>We provide modern curricula that meet the needs of students and enhance their enthusiasm for studying.</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 640 512">
+          <path d="M96 64c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H160c-35.3 0-64-28.7-64-64V64zM176 192c0 53 43 96 96 96s96-43 96-96-43-96-96-96-96 43-96 96zm64 176h64c17.7 0 32-14.3 32-32v-16h-128v16c0 17.7 14.3 32 32 32z" />
+        </svg>
+        <h3>Expert Teachers</h3>
+        <p>Our distinguished teaching staff has extensive experience in teaching all grade levels.</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 512 512">
+          <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm136 272h-88v88c0 13.3-10.7 24-24 24s-24-10.7-24-24v-88h-88c-13.3 0-24-10.7-24-24s10.7-24 24-24h88v-88c0-13.3 10.7-24 24-24s24 10.7 24 24v88h88c13.3 0 24 10.7 24 24s-10.7 24-24 24z" />
+        </svg>
+        <h3>Various Activities</h3>
+        <p>Various recreational and educational programs encourage students to read and learn.</p>
+      </div>
+    </div>
+
+    <div class="classes">
+      <h2>Available Grades</h2>
+      <div class="class-list">
+        <div class="class-item">First Intermediate</div>
+        <div class="class-item">Second Intermediate</div>
+        <div class="class-item">Third Intermediate</div>
+        <div class="class-item">Fourth Preparatory</div>
+        <div class="class-item">Fifth Preparatory</div>
+        <div class="class-item">Sixth Preparatory</div>
+      </div>
+    </div>
+
+    <div class="gallery-section">
+      <h2 class="gallery-title">Some Images of Our School</h2>
+      <div class="gallery">
+        <img src="{% static 'images/school1.jpg' %}" onclick="openLightbox(0)">
+        <img src="{% static 'images/school2.jpg' %}" onclick="openLightbox(1)">
+        <img src="{% static 'images/school3.jpg' %}" onclick="openLightbox(2)">
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Window -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+    <img id="lightbox-img">
+    <span class="next" onclick="changeImage(1)">&#10095;</span>
+  </div>
+  {% include "school/footer.html" %}
+
+  <script>
+    let currentImageIndex = 0;
+    const images = [
+      "{% static 'images/school1.jpg' %}",
+      "{% static 'images/school2.jpg' %}",
+      "{% static 'images/school3.jpg' %}"
+    ];
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+      document.getElementById("lightbox-img").src = images[index];
+      document.getElementById("lightbox").classList.add("show");
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("show");
+    }
+
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      if (currentImageIndex < 0) {
+        currentImageIndex = images.length - 1;
+      } else if (currentImageIndex >= images.length) {
+        currentImageIndex = 0;
+      }
+      document.getElementById("lightbox-img").src = images[currentImageIndex];
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowRight") {
+        changeImage(1);
+      } else if (event.key === "ArrowLeft") {
+        changeImage(-1);
+      } else if (event.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  </script>
+
+</body>

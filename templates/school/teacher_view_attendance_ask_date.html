@@ -1,0 +1,128 @@
+{% extends 'school/teacherbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #8b0000, #ff0000);
+      color: #fff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      margin-top: 135px;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .note p {
+      direction: rtl; /* To align text right to left */
+      text-align: center;
+      font-family: 'Arial', sans-serif; /* Modern font */
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 25px;
+      margin-top: 25px;
+      letter-spacing: 1px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: -webkit-linear-gradient(left, #8b0000, #ff0000);
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .btnSubmit {
+        width: 40%;
+      }
+
+      .note p {
+        direction: rtl;
+        text-align: center;
+        font-family: 'Arial', sans-serif;
+        font-size: 1.01rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0px;
+      }
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p><strong>Enter Date to Track Attendance for the Class: &nbsp
+          {% if cl == "one" %}
+            First Intermediate
+          {% elif cl == "two" %}
+            Second Intermediate
+          {% elif cl == "three" %}
+            Third Intermediate
+          {% elif cl == "four" %}
+            Fourth Secondary
+          {% elif cl == "five" %}
+            Fifth Secondary
+          {% elif cl == "six" %}
+            Sixth Secondary
+          {% else %}
+            {{ cl }}
+          {% endif %}
+        </strong></p>
+      </div>
+
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              {% render_field form.date type="date" class="form-control" placeholder="Enter date mm/dd/yyyy" %}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">Confirm</button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock content %}

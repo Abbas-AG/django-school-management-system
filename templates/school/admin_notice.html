@@ -1,0 +1,133 @@
+{% extends 'school/adminbase.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <style media="screen">
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f4f4f9;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 100px;
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      color: #fff;
+      margin-top: 90px;
+      font-weight: bold;
+      line-height: 100px;
+    }
+
+    .form-content {
+      padding: 4%;
+      border: 2px solid #ced4da;
+      border-radius: 10px;
+      margin-bottom: 2%;
+      background-color: #fff;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+      height: 45px;
+      font-size: 1rem;
+      padding: 10px;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 100%;
+      cursor: pointer;
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: bold;
+      animation: buttonAnimation 1s ease-in-out infinite; /* Adding animation */
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      padding: 10px 20px;
+      border-radius: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    /* Change color when hovering over the button */
+    .btnSubmit:hover {
+      background: linear-gradient(to right, #c18000, #533700);
+      transition: background 0.3s ease;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding-top: 50px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+    }
+
+  </style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<form method="post" enctype="multipart/form-data">  <!-- Added enctype for file upload -->
+  {% csrf_token %}
+  <div class="container register-form">
+    <div class="form">
+      <div class="note">
+        <p>Create a New Announcement</p>
+      </div>
+
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              {% render_field form.message class="form-control" placeholder="Write your message here" %}
+            </div>
+            <div class="form-group">
+              {% render_field form.by type="hidden" class="form-control" placeholder="Your Name" %}
+            </div>
+            <div class="form-group">
+              {% render_field form.image class="form-control" %}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">Submit the Report</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock content %}

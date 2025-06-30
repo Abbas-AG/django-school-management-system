@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+<meta property="og:title" content="Al-Tamayuz School">
+<meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+<meta property="og:image" content="{% static 'images/icon.png' %}">
+<meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+<meta property="og:color" content="#0056b3">
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>School Management</title>
+  <style media="screen">
+    .jumbotron {
+      margin: 0;
+    }
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+
+    .alert {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  {% include "school/navbar.html" %}
+  {% block content %}
+  {% endblock content %}
+  {% include "school/footer.html" %}
+</body>
+
+</html>

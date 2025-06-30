@@ -1,0 +1,106 @@
+{% extends 'school/adminbase.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+  <meta property="og:title" content="Al-Tamayuz School">
+  <meta property="og:description" content="Al-Tamayuz School for the Distinguished is a leading school in Iraq, committed to providing high-quality education and fostering academic excellence and growth. Al-Tamayuz School is a pioneering educational institution in Iraq, striving to create a modern and integrated learning environment, aiming to develop creative minds, enhance academic achievement, and refine students' personal skills.">
+  <meta property="og:image" content="{% static 'images/icon.png' %}">
+  <meta name="theme-color" content="#0056b3"> <!-- لون أزرق لـ Open Graph -->
+  <meta property="og:color" content="#0056b3">
+
+  <link rel="icon" href="{% static 'images/icon.png' %}" type="image/png">
+  <!-- Use Bootstrap 5 instead of Bootstrap 3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+      font-size: 1.5rem;
+      text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+      color: #fff;
+    }
+
+    .row {
+      margin: 50px 0;
+    }
+
+    /* Enhance table */
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .table thead {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      color: white;
+    }
+
+    /* Better table design */
+    .table th, .table td {
+      padding: 1rem;
+      text-align: center;
+      text-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Better appearance on small devices */
+    @media (max-width: 768px) {
+      .table {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Better spacing */
+    .panel {
+      border: 1px solid #fff;
+      border-radius: 5px;
+    }
+
+    .panel-heading {
+      background: linear-gradient(to right, #f2a100, #9a6700);
+      color: white;
+      padding: 15px;
+      font-size: 1.2rem;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <div class="row">
+    <div class="panel panel-primary col-12">
+      <div class="panel-heading">
+        <h6 class="panel-title">Tuition Fees List</h6> <!-- translated from قائمة الرسوم الدراسية -->
+      </div>
+
+      <div class="panel-body">
+        <table class="table table-hover" id="dev-table">
+          <thead>
+            <tr>
+              <th>Student Name</th> <!-- translated from اسم الطالب -->
+              <th>Tuition Fee</th> <!-- translated from الرسوم الدراسية -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in students %}
+            <tr>
+              <td>{{ s.get_name }}</td>
+              <td>{{ s.fee }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
